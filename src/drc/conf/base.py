@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     # Project applications.
     'drc.accounts',
     'drc.api',
+    'drc.cmis',
     'drc.datamodel',
     'drc.sync',
     'drc.utils',
@@ -347,3 +348,6 @@ if SENTRY_DSN:
 # SSL or not?
 #
 IS_HTTPS = os.getenv('IS_HTTPS', '1').lower() in ['true', '1', 'yes']
+
+# Enable if you want to use CMIS
+CMIS_BACKEND_ENABLED = False

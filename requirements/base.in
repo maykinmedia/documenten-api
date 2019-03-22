@@ -20,3 +20,6 @@ djangorestframework-camel-case
 djangorestframework-filters
 drf-yasg
 zds-schema==0.21.5
+
+# cmis
+-e git+https://github.com/maykinmedia/chemistry-cmislib.git@0.7.dev5#egg=cmislib
