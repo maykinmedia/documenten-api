@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime
 from unittest.mock import patch
 
+from django.conf import settings
 from django.test import override_settings
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -13,8 +14,11 @@ from zds_schema.constants import ObjectTypes
 from zds_schema.tests import get_validation_errors
 from zds_schema.validators import IsImmutableValidator
 
+from drc.cmis.tests.mixins import DMSMixin
 from drc.datamodel.constants import RelatieAarden
-from drc.datamodel.models import EnkelvoudigInformatieObject, ObjectInformatieObject
+from drc.datamodel.models import (
+    EnkelvoudigInformatieObject, ObjectInformatieObject
+)
 from drc.datamodel.tests.factories import (
     EnkelvoudigInformatieObjectFactory, ObjectInformatieObjectFactory
 )
@@ -32,7 +36,7 @@ def dt_to_api(dt: datetime):
 
 
 @override_settings(LINK_FETCHER='zds_schema.mocks.link_fetcher_200')
-class ObjectInformatieObjectAPITests(APITestCase):
+class ObjectInformatieObjectAPITests(DMSMixin, APITestCase):
 
     list_url = reverse_lazy('objectinformatieobject-list', kwargs={'version': '1'})
 
@@ -54,6 +58,10 @@ class ObjectInformatieObjectAPITests(APITestCase):
             'version': '1',
             'uuid': enkelvoudig_informatie.uuid,
         })
+
+        if settings.CMIS_BACKEND_ENABLED:
+            from drc.cmis.signals import creeer_document
+            creeer_document.send(sender=self.__class__, document=enkelvoudig_informatie)
 
         content = {
             'informatieobject': 'http://testserver' + enkelvoudig_informatie_url,
@@ -96,6 +104,10 @@ class ObjectInformatieObjectAPITests(APITestCase):
             'uuid': enkelvoudig_informatie.uuid,
         })
 
+        if settings.CMIS_BACKEND_ENABLED:
+            from drc.cmis.signals import creeer_document
+            creeer_document.send(sender=self.__class__, document=enkelvoudig_informatie)
+
         content = {
             'informatieobject': 'http://testserver' + enkelvoudig_informatie_url,
             'object': BESLUIT,
@@ -134,6 +146,10 @@ class ObjectInformatieObjectAPITests(APITestCase):
             'version': '1',
             'uuid': enkelvoudig_informatie.uuid,
         })
+
+        if settings.CMIS_BACKEND_ENABLED:
+            from drc.cmis.signals import creeer_document
+            creeer_document.send(sender=self.__class__, document=enkelvoudig_informatie)
 
         content = {
             'informatieobject': 'http://testserver' + enkelvoudig_informatie_url,
