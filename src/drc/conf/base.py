@@ -364,3 +364,8 @@ IS_HTTPS = os.getenv('IS_HTTPS', '1').lower() in ['true', '1', 'yes']
 
 # Enable if you want to use CMIS
 CMIS_BACKEND_ENABLED = False
+
+DRC_BUILDIN_BACKEND = True
+DRC_STORAGE_BACKENDS = [
+    'drc.cmis.backend.CMISDRCStorageBackend'
+]
