@@ -16,10 +16,10 @@ urlpatterns = [
     path('ref/', include('zds_schema.urls')),
 ]
 
-if 'drc.cmis' in settings.INSTALLED_APPS:
-    urlpatterns += [
-        path('cmis/', include(('drc.cmis.urls', 'cmis'), namespace='cmis'))
-    ]
+# if 'drc.cmis' in settings.INSTALLED_APPS:
+#     urlpatterns += [
+#         path('cmis/', include(('drc.cmis.urls', 'cmis'), namespace='cmis'))
+#     ]
 
 # NOTE: The staticfiles_urlpatterns also discovers static files (ie. no need to run collectstatic). Both the static
 # folder and the media folder are only served via Django if DEBUG = True.

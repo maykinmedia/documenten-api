@@ -9,7 +9,6 @@
 # from zds_schema.tests import JWTScopesMixin, get_operation_url
 
 # from drc.api.scopes import SCOPE_DOCUMENTEN_ALLES_VERWIJDEREN
-# from drc.cmis.tests.mixins import DMSMixin
 # from drc.datamodel.models import (
 #     EnkelvoudigInformatieObject, Gebruiksrechten, ObjectInformatieObject
 # )
@@ -20,7 +19,7 @@
 
 
 # @override_settings(LINK_FETCHER='zds_schema.mocks.link_fetcher_200')
-# class US349TestCase(DMSMixin, JWTScopesMixin, APITestCase):
+# class US349TestCase(JWTScopesMixin, APITestCase):
 
 #     scopes = [SCOPE_DOCUMENTEN_ALLES_VERWIJDEREN]
 #     zaaktypes = ['*']
