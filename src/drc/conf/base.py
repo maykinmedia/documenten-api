@@ -4,6 +4,7 @@ import os
 from django.urls import reverse_lazy
 
 from .api import *  # noqa
+from .drc_cmis import *  # noqa
 
 SITE_ID = int(os.getenv('SITE_ID', 1))
 
@@ -362,18 +363,3 @@ if SENTRY_DSN:
 # SSL or not?
 #
 IS_HTTPS = os.getenv('IS_HTTPS', '1').lower() in ['true', '1', 'yes']
-
-#
-# CMIS settings
-#
-DRC_STORAGE_BACKENDS = [
-    'drc.backend.django.DjangoDRCStorageBackend',
-    'drc_cmis.backend.CMISDRCStorageBackend'
-]
-
-#
-# DRC_CMIS_CLIENT
-#
-DRC_CMIS_CLIENT_URL = 'http://localhost:8080/alfresco/cmisatom'
-DRC_CMIS_CLIENT_USER = 'admin'
-DRC_CMIS_CLIENT_USER_PASSWORD = 'admin'
